@@ -69,4 +69,4 @@ int BSearch(int ar[], int len, int target) // 이진 탐색 함수
     ![equation](http://latex.codecogs.com/svg.latex?n%20%5Ctimes%20%5Cleft%20(%20%5Cfrac%7B1%7D%7B2%7D%20%5Cright%20)%5Ek%20=%201)  
     ![equation](http://latex.codecogs.com/svg.latex?%5Clog_2%20n%20=%20k)  
     ![equation](http://latex.codecogs.com/svg.latex?T(n)%20=%20%5Clog_2%20n)  
-    - ### Big-O : &nbsp;![equation](http://latex.codecogs.com/svg.latex?%5Clog_2%20n)
+    - ### Big-O : &nbsp;![equation](http://latex.codecogs.com/svg.latex?O(%5Clog_2%20n))
