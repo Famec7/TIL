@@ -58,6 +58,17 @@ int BSearch(int ar[], int len, int target) // 이진 탐색 함수
 
     return -1; //탐색 대상이 없을 시 -1 반환
 }
+
+int main()
+{
+    int arr[] = {3, 5, 2, 4, 9};
+
+    int idx = BSearch(arr, sizeof(arr) / sizeof(int), 4);
+    if(idx == -1)
+        printf("Fail\n");
+    else
+        printf("Index : %d\n", idx);
+}
 ```
 ### 데이터의 수 : &nbsp;![equation](http://latex.codecogs.com/svg.latex?n)
 * ### Worst case (최악의 경우)
