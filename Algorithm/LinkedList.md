@@ -195,7 +195,7 @@ int main()
 - ### ADT
     > - #### void Insert(T data)
         Tail(꼬리)에 노드를 추가한다.
-        ![LinkedListInsert1](../img/LinkedListInsert1.jpg)
+        ![LinkedListInsert1](img/LinkedListInsert1.jpg)
     > - #### void InsertFront(T data)
         Head(머리)에 노드를 추가한다.
     > - #### int Remove(T Rdata)
