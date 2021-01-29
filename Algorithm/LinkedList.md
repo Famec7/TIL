@@ -195,7 +195,23 @@ int main()
 - ### ADT
     > - #### void Insert(T data)
         Tail(꼬리)에 노드를 추가한다.
-        ![LinkedListInsert1](img/LinkedListInsert1.jpg)
+    >>Head가 NULL값을 가질 시
+    ```C++
+    if (head == nullptr)
+        head = newNode;
+    ```
+    <center><img src = "./img/LinkedListInsert1.jpg" width = "70%"></center>
+    <center><img src = "./img/LinkedListInsert2.jpg" width = "70%" height = "20%"></center>
+
+    >> Head가 NULL값을 갖지 않을 시
+    ```C++
+    else
+        tail->next = newNode;
+    ```
+    <center><img src = "./img/LinkedListInsert3.jpg" width = "70%" height = "20%"></center>
+    <center><img src = "./img/LinkedListInsert4.jpg" width = "70%" height = "40%"></center>
+    <center><img src = "./img/LinkedListInsert5.jpg" width = "70%" height = "40%"></center>
+
     > - #### void InsertFront(T data)
         Head(머리)에 노드를 추가한다.
     > - #### int Remove(T Rdata)
