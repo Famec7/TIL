@@ -214,8 +214,30 @@ int main()
 
     > - #### void InsertFront(T data)
         Head(머리)에 노드를 추가한다.
+    >> Head가 NULL값을 가질 시 Insert함수와 동일
+
+    >> Head가 NULL 값을 갖지 않을 시
+    ```C++
+    newNode->next = head;
+    ```
+    <center><img src = "./img/LinkedListInsertFront1.jpg" width = "70%"></center>
+
+    ```C++
+    head = newNode;
+    ```
+    <center><img src = "./img/LinkedListInsertFront2.jpg" width = "70%"></center>
+
     > - #### int Remove(T Rdata)
-        해당하는 노드를 제거한다. 성공하면 1을 실패하면 -1을 반환한다.
+        해당하는 노드를 제거한다. 성공하면 1을 실패하면 -1을 반환한다.  
+    >> 삭제할 노드를 찾으면
+    <center><img src = "./img/LinkedListRemove1.jpg" width = "70%"></center>
+
+    ```C++
+    before->next = pDelete->next;
+    delete pDelete;
+    ```
+    <center><img src = "./img/LinkedListRemove2.jpg" width = "70%"></center>
+
     > - #### void Print()
         데이터를 모두 출력한다.
     > - #### int Search(T Sdata)
