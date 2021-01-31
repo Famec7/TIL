@@ -439,6 +439,9 @@ int main()
     Insert 함수와 Remove 함수가 다르다.
 
 - ### ADT (차이점만 설명)
-    > - ### void Insert(T data)
-        >> 
-        
+    > - ### void Insert(T data)        
+    <center><img src = "./img/LinkedListInsertDummy1.jpg" width = "70%"></center>
+    <center><img src = "./img/LinkedListInsertDummy2.jpg" width = "70%"></center>
+
+    > - ### void Remove(T Rdata)
+    원리는 비슷하나 코드가 더 간결해짐
