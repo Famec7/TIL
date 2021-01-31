@@ -82,5 +82,5 @@ int main()
     ![equation](http://latex.codecogs.com/svg.latex?T(n)%20=%20%5Clog_2%20n)  
     - ### Big-O : &nbsp; ![equation](http://latex.codecogs.com/svg.latex?O(\log_2&space;n))
 
-    - ### 정렬이 되어 있을때만 사용가능
-    - ### 순차 탐색보다 연산횟수가 훨씬 줄어듦
+* ### 정렬이 되어 있을때만 사용가능
+* ### 순차 탐색보다 연산횟수가 훨씬 줄어듦
