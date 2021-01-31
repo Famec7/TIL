@@ -1,6 +1,6 @@
 원형 연결 리스트 (Circular LinkedList)
 =====================================
- <center><img src = "./img/CircularLinkedListmodel.jpg"></center>
+ <center><img src = "./img/CircularLinkedListmodel.JPG"></center>
 
  ## 장점
 
