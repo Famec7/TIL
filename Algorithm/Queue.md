@@ -25,6 +25,12 @@ using namespace std;
 
 #define LEN 100
 
+#pragma once
+#include <iostream>
+using namespace std;
+
+#define LEN 100
+
 template <typename T>
 class Cqueue
 {
@@ -67,21 +73,26 @@ public:
         }
 
         front_index = (front_index + 1) % LEN;
-        
         opCnt--;
     }
-    T front() const { return array[front_index]; }
-    T back() const { return array[back_index]; }
-    int size() const { return opCnt; }
 
-private:
-    int NextIdx(int idx)
+    T front()
     {
-        if(idx == LEN - 1)
-            return 0;
-        else
-            return ++idx;
+        if(front_index == 0)
+            front_index++;
+        
+        return array[front_index];
     }
+
+    T back()
+    {
+        if(back_index == 0)
+            back_index++;
+
+        return array[back_index];
+    }
+
+    int size() const { return opCnt; }
 };
 ```
 CQueue.cpp
@@ -113,11 +124,19 @@ int main()
 
 - ### ADT와 원리
     > #### bool empty()
+    <center><img src = "./img/Cqueue_empty.JPG"></center>
         
     > #### void push(T data)
     <center><img src = "./img/Cqueue_push.JPG"></center>
 
     > #### void pop()
+    <center><img src = "./img/Cqueue_pop.JPG"></center>
+
     > #### T front()
+    ##### front_index의 값을 반환
+
     > #### T back()
+    ##### back_index의 값을 반환
+
     > #### int size()
+    ##### 큐에 채워진 값의 개수를 반환
