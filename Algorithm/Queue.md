@@ -138,4 +138,151 @@ int main()
     ##### back_index의 값을 반환
 
     > #### int size()
+    ##### 큐에 채워진 값의 개수를 반환  
+
+## 연결리스트 기반 큐
+----------------------------
+- ### 장점
+    - #### 길이가 가변적이다.
+- ### 단점
+    - #### 탐색하는데 O(n)의 시간이 걸린다.
+
+Node.h
+```C++
+#pragma once
+
+template <typename T>
+class Node
+{
+    template <typename T1> friend class Queue;
+private:
+    T data;
+    Node<T> *next = nullptr;
+
+public:
+    T GetData() const { return data; }
+};
+```
+LQueue.h
+```C++
+#pragma once
+#include <iostream>
+#include "Node.h"
+
+using namespace std;
+
+template <typename T>
+class Node;
+
+template <typename T>
+class Queue
+{
+private:
+    T data;
+    Node<T> *front_ptr = nullptr;
+    Node<T> *back_ptr = nullptr;
+    int count = 0;
+
+public:
+    bool empty() const
+    {
+        if (front_ptr == nullptr)
+            return true;
+        else
+            return false;
+    }
+
+    void push(T data)
+    {
+        Node<T> *newNode = new Node<T>;
+        newNode->data = data;
+
+        if (empty())
+        {
+            front_ptr = newNode;
+            back_ptr = newNode;
+        }
+
+        else
+        {
+            back_ptr->next = newNode;
+            back_ptr = newNode;
+        }
+
+        count++;
+    }
+
+    void pop()
+    {
+        Node<T> *pDelete = nullptr;
+        
+        if(empty())
+        {
+            cout << "ERROR: Memory Is Not Exist" << endl;
+            exit(-1);
+        }
+
+        pDelete = front_ptr;
+        front_ptr = front_ptr->next;
+
+        delete pDelete;
+
+        count--;
+    }
+
+    T front() const { return front_ptr->data; }
+    T back() const { return back_ptr->data; }
+
+    int size() const { return count; }
+};
+```
+```C++
+#include <iostream>
+#include "LQueue.h"
+
+using namespace std;
+
+int main()
+{
+    Queue<int> q;
+
+    q.push(1);
+    q.push(2);
+    q.push(3);
+    q.push(4);
+    q.push(5);
+
+    while (!q.empty())
+    {
+        cout << q.front() << endl;
+        q.pop();
+    }
+    
+    return 0;
+}
+```
+
+- ### ADT와 원리
+    > #### bool empty()
+    ##### front_ptr이 NULL을 가리키면 비어있는 상태
+        
+    > #### void push(T data)
+    ##### 첫 노드를 추가할 때
+    <center><img src = "./img/Lqueue_push1.JPG"></center>
+    <center><img src = "./img/Lqueue_push2.JPG"></center>
+
+    ##### 첫 노드 추가 이후
+    <center><img src = "./img/Lqueue_push3.JPG"></center>
+    <center><img src = "./img/Lqueue_push4.JPG"></center>
+
+    > #### void pop()
+    <center><img src = "./img/Lqueue_pop.JPG"></center>
+
+    > #### T front()
+    ##### front_ptr이 가리키는 값을 반환
+
+    > #### T back()
+    ##### back_ptr이 가리키는 값을 반환
+
+    > #### int size()
     ##### 큐에 채워진 값의 개수를 반환
