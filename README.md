@@ -19,3 +19,4 @@ Today I Learned (TIL)
 
 ### 백준 온라인 (BaekJoon Online)
 - #### [10828 - 스택](https://github.com/Famec7/TIL/blob/main/Algorithm/%EB%B0%B1%EC%A4%80(BaekJoon)/10828.md)
+- #### [10773 - 제로](https://github.com/Famec7/TIL/blob/main/Algorithm/%EB%B0%B1%EC%A4%80(BaekJoon)/10773.md)
