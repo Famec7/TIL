@@ -18,6 +18,7 @@ Today I Learned (TIL)
 - #### [이진 트리 (Binary Tree)](https://github.com/Famec7/TIL/blob/main/Algorithm/Data_Sturucture/BinaryTree.md)
 - #### [힙 (Heap)](https://github.com/Famec7/TIL/blob/main/Algorithm/Data_Sturucture/Heap.md)
 - #### [우선순위 큐 (Priority queue)](https://github.com/Famec7/TIL/blob/main/Algorithm/Data_Sturucture/PriorityQueue.md)
+- #### [정렬 (Sort)](https://github.com/Famec7/TIL/blob/main/Algorithm/Data_Sturucture/Sort.md)
 
 ### 백준 온라인 (BaekJoon Online)
 - #### [10828 - 스택](https://github.com/Famec7/TIL/blob/main/Algorithm/%EB%B0%B1%EC%A4%80(BaekJoon)/10828.md)
