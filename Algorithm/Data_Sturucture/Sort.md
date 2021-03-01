@@ -50,3 +50,55 @@ int main()
     - #### Big O를 계산할 때에는 보통 '비교 횟수'에 대해서 검사를 진행한다. 위 코드의 비교 연산은 if문이다. 반복문만큼 비교 횟수가 일어나므로 (n - 1) + (n - 2) + (n - 3) + ... + 1 만큼 비교 연산이 실행된다. 이 등차수열의 합은 n(n - 1) / 2이다. 즉, 버블 정렬의 Big O는 O(n^2)이다. best case는 단 한 번의 이동이 일어나지 않으나 worst case는 최악의 성능을 일으킨다.
 
     - #### stable sort이다.
+
+- ## 선택 정렬 (Selection sort)
+----------
+- ### 원리
+    - #### 기준에 맞추어서 데이터를 선택(selection)하면서 옮기는 작업을 수행하는 정렬이다.데이터를 선택하는 하나의 별도 메모리 공간이 필요하다.
+    <center><img src = "./img/SelcSort.JPG"></center>
+
+- ### 소스 코드 (구현)
+```C++
+#include <iostream>
+#include <algorithm>
+#include <functional>
+
+using namespace std;
+
+template <typename T>
+void selection_sort(T *start, T *end, function<bool(const T data1, const T data2)> cmp = [](const T data1, const T data2) { return data1 < data2; })
+{
+    T *ptr = nullptr;
+
+    for (T *pos = start; pos < end - 1; pos++)
+    {
+        ptr = pos;
+        for (T *pos2 = pos + 1; pos2 < end; pos2++)
+        {
+            if(cmp(*pos2, *ptr))
+                ptr = pos2;
+        }
+
+        swap(*pos, *ptr);
+    }
+}
+
+int main()
+{
+    int arr[5] = {13, 11, 51, 2, 7};
+
+    selection_sort(arr, arr + 5);
+
+    for (const auto r : arr)
+    {
+        cout << r << ' ';
+    }
+
+    return 0;
+}
+```
+
+- ### 성능
+    - #### 데이터의 비교횟수는 버블 정렬(bubble sort)와 마찬가지로 O(n^2)이지만 이동횟수는 안쪽 for문 바깥에 존재하므로 n-1의 교환이 일어난다. 즉 비교연산에 대한 Big O는 O(n^2), 이동연산에 대한 Big O는 O(n)이다.
+
+    - #### unstable sort이다.
