@@ -102,3 +102,57 @@ int main()
     - #### 데이터의 비교횟수는 버블 정렬(bubble sort)와 마찬가지로 O(n^2)이지만 이동횟수는 안쪽 for문 바깥에 존재하므로 n-1의 교환이 일어난다. 즉 비교연산에 대한 Big O는 O(n^2), 이동연산에 대한 Big O는 O(n)이다.
 
     - #### unstable sort이다.
+
+- ## 삽입 정렬 (Insertion sort)
+-------------
+- ### 원리
+    - #### 인덱스가 1인 데이터부터 앞 인덱스에서 맞는 위치를 찾아 삽입하면서 정렬하는 방식이다. 이 과정에서 데이터를 삽입하기 위해 배열을 한칸씩 미는 작업이 필요하다.
+    <center><img src = "./img/InsertSort.JPG"></center>
+
+- ### 소스 코드 (구현)
+```C++
+#include <iostream>
+#include <functional>
+
+using namespace std;
+
+template <typename T>
+void insertion_sort(T *start, T *end, function<bool(const T data1, const T data2)> cmp = [](const T data1, const T data2){ return data1 > data2; })
+{
+    T *insert_data = new T;
+
+    for (T *pos = start + 1; pos < end; pos++)
+    {
+        T *pos2 = nullptr;
+        *insert_data = *pos;
+
+        for (pos2 = pos - 1;  pos2 >= start; pos2--)
+        {
+            if(cmp(*pos2, *insert_data))
+                *(pos2 + 1) = *pos2;
+            else
+                break;
+        }
+
+        *(pos2 + 1) = *insert_data;
+    }
+}
+
+int main()
+{
+    int arr[5] = {13, 11, 51, 2, 7};
+
+    insertion_sort(arr, arr + 5);
+
+    for (const auto r : arr)
+    {
+        cout << r << ' ';
+    }
+
+    return 0;
+}
+```
+
+- ### 성능
+    - #### worst case이면 안 쪽 for문의 조건을 탈출하지 못하고 끝까지 수행하므로 버블 정렬과 같은 O(n^2)의 결과가 나온다. 하지만 best case이면 O(n)의 결과가 나온다.
+    - #### stable sort이다.
