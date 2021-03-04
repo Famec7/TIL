@@ -156,3 +156,45 @@ int main()
 - ### 성능
     - #### worst case이면 안 쪽 for문의 조건을 탈출하지 못하고 끝까지 수행하므로 버블 정렬과 같은 O(n^2)의 결과가 나온다. 하지만 best case이면 O(n)의 결과가 나온다.
     - #### stable sort이다.
+
+- ## 힙 정렬 (Heap sort)
+--------------
+- ### 원리
+    - #### [힙(Heap)](https://github.com/Famec7/TIL/blob/main/Algorithm/Data_Sturucture/Heap.md)의 특징인 루트 노드가 가장 크다는 특징을 이용한 정렬이다. algorithm헤더에 있는 push_heap연산과 pop_heap연산을 이용하여 구현했다. push_heap은 [frist, last) 범위에 데이터를 저장하고, pop_hepa은 first 인덱스와 last - 1인덱스의 값을 교환하여 힙을 구성한다.
+
+- ### 소스 코드 (구현)
+```C++
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+template <typename T>
+void heap_sort(T *start, T *end)
+{
+    for (T *pos = start + 2; pos < end; pos++)
+        push_heap(start, pos);
+
+    for (T *pos = end; pos >= start + 2; pos--)
+        pop_heap(start, pos);
+}
+
+int main()
+{
+    int arr[5] = {13, 11, 51, 2, 7};
+
+    heap_sort(arr, arr + 5);
+
+    for (const auto r : arr)
+    {
+        cout << r << ' ';
+    }
+
+    return 0;
+}
+```
+
+- ### 성능
+    - #### push할 때의 시간 복잡도는 O(n*log_2 n)이고, pop을 할 때의 시간 복잡도도 O(nlog_2 n)이므로 힙 정렬의 시간 복잡도는 O(nlog_2 n)이다.
+
+    - #### unstable sort이다.
