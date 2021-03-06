@@ -198,3 +198,80 @@ int main()
     - #### push할 때의 시간 복잡도는 O(n*log_2 n)이고, pop을 할 때의 시간 복잡도도 O(nlog_2 n)이므로 힙 정렬의 시간 복잡도는 O(nlog_2 n)이다.
 
     - #### unstable sort이다.
+
+- ## 병합 정렬 (Merge sort)
+--------
+- ### 원리
+    - #### 분할 정복 알고리즘 (divide and conquer)을 이용하여 구현한다. 분할 정복(divide and conquer)이란 하나의 문제를 작은 문제로 나누어 해결한 후 합병하는 알고리즘이다. 보통 분할 정복을 사용하는 알고리즘은 재귀함수가 많이 나타나는 것이 특징이다.
+    <center><img src = "./img/MergeSort1.JPG"></center>
+    <center><img src = "./img/MergeSort2.JPG"></center>
+
+- ### 소스 코드 (구현)
+```C++
+#include <iostream>
+#include <functional>
+
+using namespace std;
+
+template<typename T>
+void merge_(T *arr, int left, int mid, int right, function<bool(const T data1, const T data2)> cmp)
+{
+    T *sorted_array = new T[right + 1];
+    int front_index = left;
+    int rear_index = mid + 1;
+    int index = left;
+
+    while (front_index <= mid && rear_index <= right)
+    {
+        if(cmp(arr[front_index], arr[rear_index]))
+            sorted_array[index++] = arr[front_index++];
+
+        else
+            sorted_array[index++] = arr[rear_index++];
+    }
+
+    while (rear_index <= right)
+        sorted_array[index++] = arr[rear_index++];
+
+    while (front_index <= mid)
+        sorted_array[index++] = arr[front_index++];
+
+    for (int i = left; i <= right; i++)
+        arr[i] = sorted_array[i];
+
+    delete[] sorted_array;
+}
+
+template<typename T>
+void merge_sort(T *arr, int left, int right, function<bool(const T data1, const T data2)> cmp = [](const T data1, const T data2) { return data1 < data2; })
+{
+    if(left < right)
+    {
+        int mid = (left + right) / 2;
+
+        merge_sort(arr, left, mid);
+        merge_sort(arr, mid + 1, right);
+
+        merge_(arr, left, mid, right, cmp);
+    }
+}
+
+int main()
+{
+    int arr[5] = {13, 11, 51, 2, 7};
+
+    merge_sort(arr, 0, sizeof(arr) / sizeof(int) - 1);
+
+    for (const auto r : arr)
+    {
+        cout << r << ' ';
+    }
+
+    return 0;
+}
+```
+
+- ### 성능
+    - #### 비교 연산에서 비교를 위해 최대 n번의 연산을 수행하고(첫번째 while, 두번째 while), 병합을 하는 과정에서 log2n번의 연산(트리의 진행과정과 비슷)을 수행한다. 즉, 비교연산의 횟수는 nlog_2n이다. 이동 연산은 데이터를 옮기는 횟수 2n번(sorted_array와 arr)과 병합 과정 log_2n이다. 즉 병합 정렬의 시간 복잡도는 O(log_2n)이다.
+    - #### stable sort이다.
+    - #### best case와 worst case 모두 Big O가 같지만, 임시 메모리가 필요하다는 단점이 존재한다.
