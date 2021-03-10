@@ -275,3 +275,73 @@ int main()
     - #### 비교 연산에서 비교를 위해 최대 n번의 연산을 수행하고(첫번째 while, 두번째 while), 병합을 하는 과정에서 log2n번의 연산(트리의 진행과정과 비슷)을 수행한다. 즉, 비교연산의 횟수는 nlog_2n이다. 이동 연산은 데이터를 옮기는 횟수 2n번(sorted_array와 arr)과 병합 과정 log_2n이다. 즉 병합 정렬의 시간 복잡도는 O(log_2n)이다.
     - #### stable sort이다.
     - #### best case와 worst case 모두 Big O가 같지만, 임시 메모리가 필요하다는 단점이 존재한다.
+
+- ## 퀵 정렬(Quick sort)
+--------
+- ### 원리
+    - #### 퀵 정렬 (quick sort)은 병합 정렬(merge sort)처럼 분할 정복 (divide and conquer) 알고리즘을 사용한다. 단, 병합 정렬(merge sort)과 달리 별도의 메모리가 필요하지 않다는 장점이 있다. 퀵 정렬(quick sort)에서 가장 중요한 점은 pivot이라는 기준점을 세운다는 점이다. 또한, pivot을 어디다 두는지에 따라 성능이 달라진다. 아래 소스 코드는Medianofthree를 이용하여 구현한 개선된 퀵정렬이다.
+
+    - #### while문
+    <center><img src = "./img/QuickSort1.JPG"></center>
+
+    - #### 재귀함수
+    <center><img src = "./img/QuickSort2.JPG"></center>
+
+- ### 소스 코드 (구현)
+----
+```C++
+#include <iostream>
+#include <algorithm>
+#include <functional>
+
+using namespace std;
+
+template <typename T>
+void qsort(T *start, T *end, function<bool(const T data1, const T data2)> cmp = [](const T data1, const T data2) { return data1 < data2; })
+{
+    if (start >= end)
+        return;
+    T *pivot = (end - start) / 2 + start;
+    T *left = start;
+    T *right = end;
+
+    while (left <= right)
+    {
+        while (cmp(*left, *pivot))
+            left++;
+        while (cmp(*pivot, *right))
+            right--;
+
+        if (left <= right)
+        {
+            swap(*left, *right);
+            left++;
+            right--;
+        }
+    }
+
+    qsort(start, right);
+    qsort(left, end);
+}
+
+int main()
+{
+    int arr[5] = {13, 11, 51, 2, 7};
+
+    qsort(arr, arr + 4);
+
+    for (const auto r : arr)
+    {
+        cout << r << ' ';
+    }
+
+    return 0;
+}
+```
+
+- ### 성능
+------
+|퀵 정렬|Big O (정렬된 상태)|
+|------|---|
+|일반적인 퀵정렬|O(n^2)|
+|Three of median - 개선된 퀵정렬|O(log_2 n)|
