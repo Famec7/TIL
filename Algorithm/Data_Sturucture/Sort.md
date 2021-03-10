@@ -345,3 +345,4 @@ int main()
 |------|---|
 |일반적인 퀵정렬|O(n^2)|
 |Three of median - 개선된 퀵정렬|O(log_2 n)|
+- #### unstable sort이다.
