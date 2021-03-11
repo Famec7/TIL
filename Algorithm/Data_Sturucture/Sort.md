@@ -346,3 +346,78 @@ int main()
 |일반적인 퀵정렬|O(n^2)|
 |Three of median - 개선된 퀵정렬|O(log_2 n)|
 - #### unstable sort이다.
+
+- ## 기수 정렬 (Radix sort)
+--------
+- ### 원리
+    - #### 일반적인 정렬방법과 달리 정렬을 위한 비교연산을 하지 않는다는 것이 가장 큰 장점이다. 하지만 데이터의 길이가 다른 데이터끼리는 정렬이 불가능하다는 단점이 존재한다. 즉, 정수이거나 이진문자열같은 데이터를 정렬하는데 많이 쓰인다.
+
+- ### LSD or MSD
+    - #### LSD
+        - ##### 가장 작은 자릿수부터 정렬하는 방식이다.
+        - ##### 가장 큰 자릿수까지 정렬을 진행해야한다는 단점이 있습니다.
+        - ##### stable sort이다.
+    - #### MSD
+        - ##### 가장 큰 자릿수부터 정렬하는 방식이다.
+        - ##### 가장 작은 자릿수까지 정렬을 진행하지 않아도 된다는 장점이 있지만, 중간에 데이터를 점검해야 오류가 발생하지 않는다는 단점이 있다.
+        - ##### unstable sort이다.
+
+- ### 소스 코드 (LSD 구현)
+```C++
+#include <iostream>
+#include <queue>
+#include <string>
+
+using namespace std;
+
+void radix_sort(int *start, int *end)
+{
+    queue<int> bucket[10];
+    int max = 0;
+    int fac = 1;
+
+    for (int *pos = start; pos < end; pos++) // 자릿수가 긴 데이터 찾기
+    {
+        string str = to_string(*pos);
+        if(max < str.length())
+            max = str.length();
+    }
+
+    for (int i = 0; i < max; i++)
+    {
+        for (int *pos = start; pos < end; pos++)
+        {
+            bucket[*pos / fac % 10].push(*pos);
+        }
+
+        int *pos = start;
+        for (auto &r : bucket)
+        {
+            while (!r.empty())
+            {
+                *pos = r.front();
+                r.pop();
+                pos++;
+            }
+        }
+        fac *= 10;
+    }
+}
+
+int main()
+{
+    int arr[5] = {13, 11, 51, 2, 7};
+
+    radix_sort(arr, arr + 5);
+
+    for (const auto r : arr)
+    {
+        cout << r << ' ';
+    }
+
+    return 0;
+}
+```
+
+- ## 성능
+    - ### 비교연산이 아닌 데이터의 push와 pop을 중점으로 두어야 합니다. 데이터의 push와 pop은 데이터의 수 X 데이터의 길이만큼 진행됩니다. 즉, LSD 기수정렬의 Big O는 O(ln)(데이터의 길이 : l, 갯수 : n)입니다.
