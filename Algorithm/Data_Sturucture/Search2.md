@@ -5,8 +5,11 @@
 - ### 원리
     - #### 이진 탐색에서 사용한 중앙부터 탐색하는 것이 아닌 선형 보간법(linear interpolation)을 이용한 탐색 방법이다. 선형 보간법이란 어떠한 두 점 사이에 위치한 한 점을 추정하기 위해 선형적으로 계산하는 방법이다
     <center><img src = "./img/InterpolationLinear.JPG"></center>
+
     위 사진에서 (x, y)를 구하기 위해서는 다음과 같은 비례식을 세워 구할 수 있다.
+    
     <center><img src = "./img/InterpolationLinear2.JPG"></center>
+
     위 식이 알려진 두 점 사이에서 추정되는 점이다. 이 점을 기준점으로 잡아 탐색을 진행한다.
 
 - ### 소스 코드 (구현)
