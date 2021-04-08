@@ -21,6 +21,7 @@ Today I Learned (TIL)
 - #### [정렬 (Sort)](https://github.com/Famec7/TIL/blob/main/Algorithm/Data_Sturucture/Sort.md)
 - #### [탐색 (Search) .ver 2.0 - 보간 탐색(interpolation search), 이진 탐색 트리(Binary search tree), AVLTree](https://github.com/Famec7/TIL/blob/main/Algorithm/Data_Sturucture/Search2.md)
 - #### [테이블 (Table)](https://github.com/Famec7/TIL/blob/main/Algorithm/Data_Sturucture/Table.md)
+- #### [체이닝 (Chaining)](https://github.com/Famec7/TIL/blob/main/Algorithm/Data_Sturucture/Chaining.md)
 
 ### 백준 온라인 (BaekJoon Online)
 - #### [10828 - 스택](https://github.com/Famec7/TIL/blob/main/Algorithm/%EB%B0%B1%EC%A4%80(BaekJoon)/10828.md)
